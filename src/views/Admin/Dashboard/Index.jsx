@@ -1,7 +1,11 @@
+import LayoutAdmin from "../../../layouts/Admin";
 export default function Dashboard() {
-    return(
-        <div>
-            Hallo
-        </div>
+    return (
+        <LayoutAdmin>
+            <div>
+                Hallo
+            </div>
+        </LayoutAdmin>
+
     );
 }

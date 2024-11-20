@@ -20,7 +20,7 @@ export default function auth({ children }) {
       }}
     >
       <div className="container">
-        <div className="row d-flex justify-content-center">{children}</div>
+        <div className="d-flex justify-content-center h-100">{children}</div>
       </div>
     </div>
   );

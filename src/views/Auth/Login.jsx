@@ -99,7 +99,7 @@ export default function login() {
                     marginTop: "50px",
                 }}
             >
-                <div className="col-md-5">
+                <div className="col-md-7">
 
                     <div className="card rounded-4 shadow-sm border-top-success">
                         <div className="card-body">
@@ -153,8 +153,8 @@ export default function login() {
                                                 style={{ borderRight : '0' }}
                                             />
                                             <div className="show-hide-password">
-                                                <a href="#" className="text-dark" onClick={toggleShowPassword}>
-                                                    <i className="fa fa-eye-slash" aria-hidden="true"></i>
+                                                <a className="text-dark" onClick={toggleShowPassword}>
+                                                    <i className={showPassword ? 'fa fa-eye' :'fa fa-eye-slash'}></i>
                                                 </a>
                                             </div>
                                         </div>
