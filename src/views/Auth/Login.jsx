@@ -30,6 +30,9 @@ export default function login() {
     //define state errors
     const [errors, setErrors] = useState([]);
 
+    //define state show password
+    const [showPassword, setShowPasswod] = useState(false);
+
     //method login
     const login = async (e) => {
         e.preventDefault();
@@ -46,9 +49,6 @@ export default function login() {
                 //set user to cookies
                 Cookies.set("user", JSON.stringify(response.data.user));
 
-                //set permissions to cookies
-                Cookies.set("permissions", JSON.stringify(response.data.permissions));
-
                 //show toast
                 toast.success("Login Successfully!", {
                     position: "top-right",
@@ -63,6 +63,27 @@ export default function login() {
                 setErrors(error.response.data);
             });
     };
+
+    //method toggle show password
+    const toggleShowPassword = (e) => {
+        e.preventDefault();
+        setShowPasswod(!showPassword);
+    }
+
+    //handle text input
+    const handleTextEmail = (e) => {
+        const { email, ...rest } = errors;
+        setEmail(e.target.value);
+        setErrors(rest);
+    }
+    
+    const handleTextPassword = (e) => {
+        const { password, ...rest } = errors;
+        setPassword(e.target.value);
+        setErrors(rest);
+    }
+
+
 
     //check if cookie already exists
     if (Cookies.get("token")) {
@@ -102,7 +123,7 @@ export default function login() {
                                                 type="text"
                                                 className="form-control"
                                                 value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
+                                                onChange={handleTextEmail}
                                                 placeholder="Enter Email Address"
                                             />
                                         </div>
@@ -120,12 +141,22 @@ export default function login() {
                                                 <i className="fa fa-lock"></i>
                                             </div>
                                             <input
-                                                type="password"
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
                                                 className="form-control"
                                                 value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
+                                                onChange={handleTextPassword}
                                                 placeholder="Enter Password"
+                                                style={{ borderRight : '0' }}
                                             />
+                                            <div className="show-hide-password">
+                                                <a href="#" className="text-dark" onClick={toggleShowPassword}>
+                                                    <i className="fa fa-eye-slash" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                         {errors.password && (
                                             <div className="alert alert-danger mt-2">
