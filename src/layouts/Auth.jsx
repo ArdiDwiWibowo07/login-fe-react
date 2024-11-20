@@ -4,7 +4,6 @@ import "../assets/custom.css";
 
 
 //import font awesome
-import "@fortawesome/fontawesome-free/js/all.js";
 
 export default function auth({ children }) {
   return (
